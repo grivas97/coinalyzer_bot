@@ -29,6 +29,7 @@ bot.onText(/\/info (.+)/, function (msg, match) {
             <b>Token Price (usd):</b> ${data.priceUsd}
             <b>Created At:</b> ${data.pairCreatedAt}
             <b>HoneyPot Check:</b> ${data.isHoneyPot}
+            <b>Blacklist Check:</b> ${data.blacklisted}
             <b>Source code Verified:</b> ${data.verified}
             <b>Buy Gas:</b> ${data.buygas}
             <b>Sell Gas:</b> ${data.sellgas}
