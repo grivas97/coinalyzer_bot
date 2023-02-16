@@ -19,7 +19,7 @@ bot.onText(/\/info (.+)/, function (msg, match) {
         if(data.status===0)
             bot.sendMessage(chatId,data.mesg);
         else {
-            const msg = `✅<b>CoinLyzer Token Scanner</b>✅
+            const msg = `✅<b>CoinaLyzer Token Scanner</b>✅
             <i>Do your own due dilligence before investing</i> 
             <b>Token Name:</b> ${data.name}
             <b>Token Symbol:</b> ${data.symbol}
