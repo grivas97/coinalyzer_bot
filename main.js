@@ -2,7 +2,7 @@
 import TelegramBot from 'node-telegram-bot-api'; 
 import getTokenDetails from './src/lib/checkall.js';
 
-var token = "5998853773:AAGjo-rCkcmTNcO2yYLWq1VXo7dzn7D25tQ"
+var token = "6186706488:AAEOszfddBTJFHFD3ARt0WSOtwkHIh59ywg"
 
 var bot = new TelegramBot(token, { polling: true });
   
