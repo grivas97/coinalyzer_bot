@@ -71,8 +71,9 @@ const checkforHoneyPot =(abi)=>{
 
       }
   
+      console.log(dexscreener.data.pairs)
       
-    if (dexscreener?.data) {
+    if (dexscreener.data.pairs !=null) {
 
       const pusd = Number(dexscreener.data.pairs[0].priceUsd);
       const pnat = Number(dexscreener.data.pairs[0].priceNative)
@@ -86,13 +87,13 @@ const checkforHoneyPot =(abi)=>{
         liquidityinQuote=Number(dexscreener.data.pairs[0]?.liquidity?.usd)/quotePrice;
         liquiditys=Number(dexscreener.data.pairs[0]?.liquidity?.usd);
     }
+    const liquidity = Number(liquidityinQuote).toFixed(2)+dexscreener.data.pairs[0].quoteToken.symbol+' ($'+liquiditys.toFixed(2)/2+')';
 
       const chainId = dexscreener.data.pairs[0].chainId;
       const dexId = dexscreener.data.pairs[0].dexId;
       const name = dexscreener.data.pairs[0].baseToken.name;
       const symbol = dexscreener.data.pairs[0].baseToken.symbol;
       const priceUsd = dexscreener.data.pairs[0].priceUsd;
-      const liquidity = Number(liquidityinQuote).toFixed(2)+dexscreener.data.pairs[0].quoteToken.symbol+' ($'+liquiditys.toFixed(2)/2+')';
       const pairCreatedAt = dexscreener.data.pairs[0].pairCreatedAt;
       const h1 = dexscreener.data.pairs[0].priceChange.h1;
       const fdv = dexscreener?.data?.pairs[0]?.fdv;
@@ -125,6 +126,12 @@ const checkforHoneyPot =(abi)=>{
           honeypotCheckerCaller.calculateTaxFee(estimatedSell, exactSell),
         ]; 
          
+        console.log(buyGas,
+          sellGas,
+          estimatedBuy,
+          exactBuy,
+          estimatedSell,
+          exactSell,buyTax+":"+sellTax);
 
         let verified=false;
         let honeyPotCheck=false;
@@ -133,13 +140,10 @@ const checkforHoneyPot =(abi)=>{
           .then((response)=>{
             if(response.data.status>0)verified=true;
 
-            console.log(response.data);
-            let honeyPotCheck = checkforHoneyPot(response.data.result)?'FAILED':'PASSED';
+             let honeyPotCheck = checkforHoneyPot(response.data.result)?'FAILED':'PASSED';
             
-            if(buyGas === -1)honeyPotCheck='FAILED';
-
-            console.log('hpchecl '+ honeyPotCheck);
-             tokenInfo= {
+ 
+               tokenInfo= {
                 status:1,
               name:name,
               symbol:symbol,
@@ -151,7 +155,7 @@ const checkforHoneyPot =(abi)=>{
               buyTax:buyTax,
               sellTax:sellTax,
               liquidity:liquidity, 
-              priceUsd:Number(priceUsd).toFixed(8)+' (in usd )', 
+              priceUsd:Number(priceUsd)+' (in usd )', 
               pairCreatedAt:new Date(pairCreatedAt).toLocaleDateString(),
               isHoneyPot:honeyPotCheck, 
               verified:verified,

@@ -1,4 +1,4 @@
-export default [
+export const honeypotCheckerAbi= [
   {
     inputs: [],
     stateMutability: "nonpayable",
