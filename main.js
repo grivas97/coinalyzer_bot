@@ -10,6 +10,22 @@ bot.on("polling_error", (err) => console.log(err));
 bot.on("error", (err) => console.log(err));
   
 
+bot.onText(/\/start/, function (msg, match) {
+    var chatId = msg.chat.id 
+    const response = `✅<b>CoinaLyzer Token Scanner</b>✅
+    <i>Enter /info tokenaddress  to display the token statistics</i>`
+    bot.sendMessage(chatId,response,{parse_mode : "HTML"});
+
+});
+
+bot.onText(/\/help/, function (msg, match) {
+    var chatId = msg.chat.id 
+    const response = `✅<b>CoinaLyzer Token Scanner</b>✅
+    <i>Enter /info tokenaddress  to display the token statistics</i>`
+    bot.sendMessage(chatId,response,{parse_mode : "HTML"});
+
+});
+
 bot.onText(/\/info (.+)/, function (msg, match) {
     var chatId = msg.chat.id
     var tokenAddress = match[1];
